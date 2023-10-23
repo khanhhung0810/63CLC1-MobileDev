@@ -18,7 +18,7 @@ public class CountryArrayAdapter extends BaseAdapter {
     //Constructor
     public CountryArrayAdapter(List<Country> listDataSource, Context context) {
         this.listDataSource = listDataSource;
-        this.inflater = inflater;
+        this.inflater = LayoutInflater.from(context);
         this.context = context;
     }
     //inner class
