@@ -29,12 +29,12 @@ public class MusicArrayAdapter extends BaseAdapter {
     }
     @Override
     public int getCount() {
-        return 0;
+        return listDataSource.size();
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public Object getItem(int i) {
+        return listDataSource.get(i);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class MusicArrayAdapter extends BaseAdapter {
         itemViewHoder.tencasiView.setText(music.getTenCaSi());
         itemViewHoder.luotngheView.setText("Số lượt nghe: "+ music.getSoLuotNghe());
 
-        int flagID = getImgIDbyResName(music.getTenCaSi());
+        int flagID = getImgIDbyResName(music.getHinhCaSi());
         itemViewHoder.flagView.setImageResource(flagID);
         return view;
     }

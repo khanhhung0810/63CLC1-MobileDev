@@ -16,9 +16,9 @@ public class ActivityCau3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cau3);
         dsBH = new ArrayList<Music>();
-        Music bh1 = new Music("Vầng Trăng Cô Đơn","Tuấn Hưng","anada",12000000);
-        Music bh2 = new Music("Sầu Thiên Thu","Lâm Chí Khanh","chile",12000000);
-        Music bh3 = new Music("Như Là Tình Yêu","MTV","thuysi",12000000);
+        Music bh1 = new Music("Vầng Trăng Cô Đơn","Ca sĩ: Tuấn Hưng","th",12000000);
+        Music bh2 = new Music("Sầu Thiên Thu","Ca sĩ: Lâm Chí Khanh","kc",12000000);
+        Music bh3 = new Music("Như Là Tình Yêu","Ca sĩ: MTV","mtv",12000000);
         dsBH.add(bh1);
         dsBH.add(bh2);
         dsBH.add(bh3);

@@ -23,13 +23,13 @@
         android:layout_width="299dp"
         android:layout_height="38dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="5dp"
         android:text="Ten Bai Hat"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.083"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageViewFlag"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,10 +37,10 @@
         android:id="@+id/textViewTenCaSi"
         android:layout_width="251dp"
         android:layout_height="21dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:text="Ten ca si"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/imageViewFlag"
         app:layout_constraintTop_toBottomOf="@+id/textViewTenBaiHat" />
 
@@ -57,4 +57,5 @@
         app:layout_constraintStart_toEndOf="@+id/imageViewFlag"
         app:layout_constraintTop_toBottomOf="@+id/textViewTenCaSi"
         tools:ignore="MissingConstraints" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
