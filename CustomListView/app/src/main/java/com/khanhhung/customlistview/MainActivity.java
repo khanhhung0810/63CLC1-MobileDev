@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         dsQG.add(qg2);
         dsQG.add(qg3);
         // tim dieu khien
-        ListView lvQG = findViewById(R.id.listViewNation);
+        ListView lvQG =findViewById(R.id.listViewNation);
         //Tao adapter
         CountryArrayAdapter adapter;
         adapter = new CountryArrayAdapter(dsQG, this);
