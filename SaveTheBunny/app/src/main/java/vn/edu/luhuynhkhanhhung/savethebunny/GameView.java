@@ -2,8 +2,10 @@ package vn.edu.luhuynhkhanhhung.savethebunny;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
@@ -11,6 +13,7 @@ import android.graphics.Rect;
 import android.view.Display;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
 
 import java.util.ArrayList;
@@ -53,6 +56,7 @@ public class GameView extends View {
         rectBackground = new Rect(0, 0, dWith, dHeight);
         rectGround = new Rect(0, dHeight - ground.getHeight(), dWith, dHeight);
         handler = new Handler();
+
         runnable = new Runnable() {
             @Override
             public void run() {
@@ -64,6 +68,75 @@ public class GameView extends View {
         textPaint.setTextSize(TEXT_SIZE);
         textPaint.setTextAlign(Paint.Align.LEFT);
         textPaint.setTypeface(ResourcesCompat.getFont(context, R.font.kenney_blocks));
+        healthPaint.setColor(Color.GREEN);
+        random = new Random();
+        rabbitX = dWith / 2 - rabbit.getWidth() / 2;
+        rabbitY = dHeight - ground.getHeight() - rabbit.getHeight();
+        spikes = new ArrayList<>();
+        explosions = new ArrayList<>();
+        for (int i =0; i<3; i++){
+            Spike spike = new Spike(context);
+            spikes.add(spike);
+        }
+
+    }
+
+    @Override
+    protected void onDraw(@NonNull Canvas canvas) {
+        super.onDraw(canvas);
+        canvas.drawBitmap(background, null, rectBackground, null);
+        canvas.drawBitmap(ground, null, rectGround, null);
+        canvas.drawBitmap(rabbit, rabbitX, rabbitY ,null);
+        for (int i=0; i<spikes.size(); i++){
+            canvas.drawBitmap(spikes.get(i).getSpike(spikes.get(i).spikeFrame), spikes.get(i).spikeX, spikes.get(i).spikeY, null);
+            spikes.get(i).spikeFrame++;
+            if (spikes.get(i).spikeFrame > 2){
+                spikes.get(i).spikeFrame = 0;
+            }
+            spikes.get(i).spikeY += spikes.get(i).spikeVelocity;
+            if (spikes.get(i).spikeY + spikes.get(i).getSpikeHeight() >= dHeight - ground.getHeight()){
+                points += 10;
+                Explosion explosion = new Explosion(context);
+                explosion.explosionX = spikes.get(i).spikeX;
+                explosion.explosionY = spikes.get(i).spikeY;
+                explosions.add(explosion);
+                spikes.get(i).resetPositon();
+            }
+        }
+
+        for (int i =0; i < spikes.size(); i++){
+            if (spikes.get(i).spikeX + spikes.get(i).getSpikeWith() >= rabbitX
+            && spikes.get(i).spikeX <= rabbitX +rabbit.getWidth()
+            && spikes.get(i).spikeY + spikes.get(i).getSpikeWith() >= rabbitY
+            && spikes.get(i).spikeY + spikes.get(i).getSpikeWith() <= rabbitY +rabbit.getHeight()){
+                life--;
+                spikes.get(i).resetPositon();
+                if (life == 0){
+                    Intent intent = new Intent(context, GameOver.class);
+                    intent.putExtra("Points", points);
+                    context.startActivity(intent);
+                    ((Activity) context).finish();
+                }
+            }
+        }
+        for (int i = 0; i <explosions.size(); i++){
+            canvas.drawBitmap(explosions.get(i).getExplosion(explosions.get(i).explosionFrame), explosions.get(i).explosionX, explosions.get(i).explosionY, null);
+            explosions.get(i).explosionFrame++;
+            if (explosions.get(i).explosionFrame > 3){
+                explosions.remove(i);
+            }
+        }
+
+        if  (life == 2){
+            healthPaint.setColor(Color.YELLOW);
+        } else if (life == 1) {
+            healthPaint.setColor(Color.RED);
+        }
+        canvas.drawRect(dWith-200, 30, dWith-200+60*life, 80, healthPaint);
+        canvas.drawText("" + points, 20, TEXT_SIZE, textPaint);
+        handler.postDelayed(runnable, UPDATE_MILLIS);
+
+
 
     }
 }
