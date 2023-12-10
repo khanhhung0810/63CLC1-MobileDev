@@ -11,6 +11,7 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.view.Display;
+import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -18,7 +19,7 @@ import androidx.core.content.res.ResourcesCompat;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.logging.Handler;
+import android.os.Handler;
 import java.util.logging.LogRecord;
 
 public class GameView extends View {
@@ -135,8 +136,30 @@ public class GameView extends View {
         canvas.drawRect(dWith-200, 30, dWith-200+60*life, 80, healthPaint);
         canvas.drawText("" + points, 20, TEXT_SIZE, textPaint);
         handler.postDelayed(runnable, UPDATE_MILLIS);
+    }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        float touchX = event.getX();
+        float touchY = event.getY();
+        if (touchY >= rabbitY){
+            int action = event.getAction();
+            if (action == MotionEvent.ACTION_DOWN){
+                oldX = event.getX();
+                oldRabbitX = rabbitX;
+            }
+            if (action == MotionEvent.ACTION_MOVE){
+                float shift = oldX - touchX;
+                float newRabbitX = oldRabbitX - shift;
+                if (newRabbitX <= 0)
+                    rabbitX = 0;
+                else if (newRabbitX >= dWith - rabbit.getWidth())
+                    rabbitX = dWith -rabbit.getWidth();
+                else
+                    rabbitX = newRabbitX;
+            }
+        }
 
-
+        return true;
     }
 }
