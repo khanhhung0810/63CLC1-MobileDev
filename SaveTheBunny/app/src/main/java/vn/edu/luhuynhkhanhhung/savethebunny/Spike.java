@@ -12,9 +12,9 @@ public class Spike {
     int spikeX, spikeY, spikeVelocity;
     Random random;
     public Spike(Context context){
-        spike[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.spike0);
-        spike[1] = BitmapFactory.decodeResource(context.getResources(), R.drawable.spike1);
-        spike[2] = BitmapFactory.decodeResource(context.getResources(), R.drawable.spike2);
+        spike[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.carrot0);
+        spike[1] = BitmapFactory.decodeResource(context.getResources(), R.drawable.carrot1);
+        spike[2] = BitmapFactory.decodeResource(context.getResources(), R.drawable.carrot2);
         random = new Random();
         resetPositon();
 
