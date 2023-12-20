@@ -32,6 +32,6 @@ public class Spike {
     public void resetPositon() {
         spikeX = random.nextInt(GameView.dWith-getSpikeWith());
         spikeY = -200 + random.nextInt(600) * -1;
-        spikeVelocity = 35 + random.nextInt(16);
+        spikeVelocity = 5 + random.nextInt(16); //tốc độ rơi
     }
 }

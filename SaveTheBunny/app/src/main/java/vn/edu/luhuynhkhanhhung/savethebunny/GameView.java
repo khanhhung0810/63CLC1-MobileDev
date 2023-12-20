@@ -104,20 +104,40 @@ public class GameView extends View {
                 spikes.get(i).resetPositon();
             }
         }
-
+//Xu li va cham
         for (int i =0; i < spikes.size(); i++){
+            spikes.get(i).spikeY += spikes.get(i).spikeVelocity;
+            // Kiểm tra va chạm với con thỏ
             if (spikes.get(i).spikeX + spikes.get(i).getSpikeWith() >= rabbitX
-            && spikes.get(i).spikeX <= rabbitX +rabbit.getWidth()
-            && spikes.get(i).spikeY + spikes.get(i).getSpikeWith() >= rabbitY
-            && spikes.get(i).spikeY + spikes.get(i).getSpikeWith() <= rabbitY +rabbit.getHeight()){
-                life--;
+                    && spikes.get(i).spikeX <= rabbitX + rabbit.getWidth()
+                    && spikes.get(i).spikeY + spikes.get(i).getSpikeHeight() >= rabbitY
+                    && spikes.get(i).spikeY <= rabbitY + rabbit.getHeight()){
+                points += 10; // Cộng điểm khi spike chạm thỏ
                 spikes.get(i).resetPositon();
+            }
+            // Kiểm tra và xử lý trường hợp spike chạm đất
+            else if (spikes.get(i).spikeY + spikes.get(i).getSpikeHeight() >= dHeight - ground.getHeight()){
+                // Trừ mạng sống khi spikes chạm đất
+                life--;
+                Explosion explosion = new Explosion(context);
+                explosion.explosionX = spikes.get(i).spikeX;
+                explosion.explosionY = spikes.get(i).spikeY;
+                explosions.add(explosion);
+                spikes.get(i).resetPositon();
+
                 if (life == 0){
+                    // Xử lý khi hết mạng
                     Intent intent = new Intent(context, GameOver.class);
                     intent.putExtra("points", points);
                     context.startActivity(intent);
                     ((Activity) context).finish();
                 }
+            }
+            // Vẽ spike
+            canvas.drawBitmap(spikes.get(i).getSpike(spikes.get(i).spikeFrame), spikes.get(i).spikeX, spikes.get(i).spikeY, null);
+            spikes.get(i).spikeFrame++;
+            if (spikes.get(i).spikeFrame > 2){
+                spikes.get(i).spikeFrame = 0;
             }
         }
         for (int i = 0; i <explosions.size(); i++){
