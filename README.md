@@ -80,7 +80,7 @@
 
 --- 
 #### 3.14. Bài Thi giữa kỳ:
-Câu 1
+C
 ![Cau1](TongKet/Cau1.png) 
 Câu 2
 ![Cau2](TongKet/Cau2.png) 
