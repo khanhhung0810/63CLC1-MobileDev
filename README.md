@@ -80,15 +80,10 @@
 
 --- 
 #### 3.14. Bài Thi giữa kỳ:
-C
-![Cau1](TongKet/Cau1.png) 
-Câu 2
-![Cau2](TongKet/Cau2.png) 
-Câu 3
-![Cau3](TongKet/Cau3.png) 
-Câu 4
+![Cau1](TongKet/Cau1.png)
+![Cau2](TongKet/Cau2.png)
+![Cau3](TongKet/Cau3.png)
 ![Cau4](TongKet/Cau4.png)
-
 #### 3.15. Bài Project_Cuối kỳ:
 ![Bunny](TongKet/Bunny.png)
 
