@@ -27,11 +27,10 @@ public class GameView extends View {
     Rect rectBackground, rectGround;
     Context context;
     Handler handler;
-
     Runnable runnable;
     Paint textPaint = new Paint();
     Paint healthPaint = new Paint();
-
+    private boolean reachedPoints = false;
     final long UPDATE_MILLIS = 30;
     float TEXT_SIZE = 120;
     int points = 0;
@@ -76,19 +75,28 @@ public class GameView extends View {
         rabbitY = dHeight - ground.getHeight() - rabbit.getHeight();
         spikes = new ArrayList<>();
         explosions = new ArrayList<>();
-        for (int i =0; i<3; i++){
+        for (int i =0; i<4; i++){
             Spike spike = new Spike(context);
             spikes.add(spike);
         }
 
     }
+    private void spikeSpeed() {
+        if (points >= 100 && !reachedPoints) {
 
+            for (Spike spike : spikes) {
+                spike.resetPositon(); // Tăng tốc độ rơi của spikes
+            }
+            reachedPoints = true;
+        }
+    }
     @Override
     protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawBitmap(background, null, rectBackground, null);
         canvas.drawBitmap(ground, null, rectGround, null);
         canvas.drawBitmap(rabbit, rabbitX, rabbitY ,null);
+        invalidate();
         for (int i=0; i<spikes.size(); i++){
             canvas.drawBitmap(spikes.get(i).getSpike(spikes.get(i).spikeFrame), spikes.get(i).spikeX, spikes.get(i).spikeY, null);
             spikes.get(i).spikeFrame++;
@@ -102,10 +110,10 @@ public class GameView extends View {
                 explosion.explosionX = spikes.get(i).spikeX;
                 explosion.explosionY = spikes.get(i).spikeY;
                 explosions.add(explosion);
-                spikes.get(i).resetPositon();
+                spikeSpeed();   //Xử lý tốc độ theo điểm
             }
         }
-//Xu li va cham
+//Xử lý va chạm
         for (int i =0; i < spikes.size(); i++){
             spikes.get(i).spikeY += spikes.get(i).spikeVelocity;
             // Kiểm tra va chạm với con thỏ
@@ -113,8 +121,8 @@ public class GameView extends View {
                     && spikes.get(i).spikeX <= rabbitX + rabbit.getWidth()
                     && spikes.get(i).spikeY + spikes.get(i).getSpikeHeight() >= rabbitY
                     && spikes.get(i).spikeY <= rabbitY + rabbit.getHeight()){
-                points += 10; // Cộng điểm khi spike chạm thỏ
-                spikes.get(i).resetPositon();
+                    points += 10; // Cộng điểm khi spike chạm thỏ
+                    spikes.get(i).resetPositon();
             }
             // Kiểm tra và xử lý trường hợp spike chạm đất
             else if (spikes.get(i).spikeY + spikes.get(i).getSpikeHeight() >= dHeight - ground.getHeight()){
@@ -141,6 +149,8 @@ public class GameView extends View {
                 spikes.get(i).spikeFrame = 0;
             }
         }
+
+        // Vẽ explode
         for (int i = 0; i <explosions.size(); i++){
             canvas.drawBitmap(explosions.get(i).getExplosion(explosions.get(i).explosionFrame), explosions.get(i).explosionX, explosions.get(i).explosionY, null);
             explosions.get(i).explosionFrame++;
@@ -148,7 +158,7 @@ public class GameView extends View {
                 explosions.remove(i);
             }
         }
-
+        // vẽ thanh máu
         if  (life == 2){
             healthPaint.setColor(Color.YELLOW);
         } else if (life == 1) {
@@ -158,6 +168,8 @@ public class GameView extends View {
         canvas.drawText("" + points, 20, TEXT_SIZE, textPaint);
         handler.postDelayed(runnable, UPDATE_MILLIS);
     }
+
+
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -183,4 +195,5 @@ public class GameView extends View {
 
         return true;
     }
+
 }
