@@ -45,16 +45,10 @@ public class GameOver extends AppCompatActivity {
     public void restart(View view){
         Intent intent = new Intent(GameOver.this, MainActivity.class);
         startActivity(intent);
-        stopMusic(); // Dừng nhạc khi ấn nút restart
         finish();
     }
     public void  exit(View view){
         finish();
     }
-    private void stopMusic() {
-        // Dừng nhạc
-        if (MainActivity.nhac != null && MainActivity.nhac.isPlaying()) {
-            MainActivity.nhac.stop();
-        }
-    }
+
 }

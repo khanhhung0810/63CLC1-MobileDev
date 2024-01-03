@@ -10,8 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
-
-    static MediaPlayer nhac;
+    MediaPlayer nhac;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,5 +27,12 @@ public class MainActivity extends AppCompatActivity {
         GameView gameView = new GameView(this);
         setContentView(gameView);
         nhac.start();
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (nhac != null) {
+            nhac.release();
+        }
     }
 }
