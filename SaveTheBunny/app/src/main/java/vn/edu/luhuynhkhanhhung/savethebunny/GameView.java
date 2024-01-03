@@ -81,6 +81,7 @@ public class GameView extends View {
         }
 
     }
+    // Tăng tốc độ rơi của spikes
     private void spikeSpeed() {
         if (points >= 100 && !reachedPoints) {
 
