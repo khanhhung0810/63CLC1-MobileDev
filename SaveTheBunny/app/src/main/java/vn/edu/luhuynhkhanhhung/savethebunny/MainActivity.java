@@ -22,12 +22,6 @@ public class MainActivity extends AppCompatActivity {
         nhac.setLooping(true);
 
     }
-
-    public void startGame(View view) {
-        GameView gameView = new GameView(this);
-        setContentView(gameView);
-        nhac.start();
-    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -35,4 +29,10 @@ public class MainActivity extends AppCompatActivity {
             nhac.release();
         }
     }
+    public void startGame(View view) {
+        GameView gameView = new GameView(this);
+        setContentView(gameView);
+        nhac.start();
+    }
+
 }
