@@ -1,6 +1,7 @@
 # 1. 63CLC1-MobileDev
 ## 2. Lữ Huỳnh Khánh Hưng || MSSV: 63130480
-
+## 2.1. Link Canva slide :
+[Canva](https://www.canva.com/design/DAF4uBhIJa4/HdiQWHd0Bp2O2J07A18UYg/edit?utm_content=DAF4uBhIJa4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 ### 3. Tổng Kết các bài tập đã làm trong 1 kỳ học.
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
@@ -8,6 +9,7 @@
 
 - [1. 63CLC1-MobileDev](#1-63clc1-mobiledev)
   - [2. Lữ Huỳnh Khánh Hưng || MSSV: 63130480](#2-lữ-huỳnh-khánh-hưng--mssv-63130480)
+  - [2.1. Link Canva slide :](#21-link-canva-slide-)
     - [3. Tổng Kết các bài tập đã làm trong 1 kỳ học.](#3-tổng-kết-các-bài-tập-đã-làm-trong-1-kỳ-học)
       - [3.1. Bài Layout:](#31-bài-layout)
       - [3.2. Bài Ex5:](#32-bài-ex5)
@@ -17,13 +19,13 @@
       - [3.6. Bài CustomListView:](#36-bài-customlistview)
       - [3.7. Bài ChuyenMH:](#37-bài-chuyenmh)
       - [3.8. Bài ChuyenMH2:](#38-bài-chuyenmh2)
-      - [3.9. Bài Fragment_EX:](#39-bài-fragment_ex)
+      - [3.9. Bài Fragment\_EX:](#39-bài-fragment_ex)
       - [3.10. Bài QuanLyChiTieu:](#310-bài-quanlychitieu)
       - [3.11. Bài ViewPageEX:](#311-bài-viewpageex)
-      - [3.12. Bài ViewPage_Recycle:](#312-bài-viewpage_recycle)
+      - [3.12. Bài ViewPage\_Recycle:](#312-bài-viewpage_recycle)
       - [3.13. Bài SQLite:](#313-bài-sqlite)
       - [3.14. Bài Thi giữa kỳ:](#314-bài-thi-giữa-kỳ)
-      - [3.15. Bài Project_Cuối kỳ:](#315-bài-project_cuối-kỳ)
+      - [3.15. Bài Project\_Cuối kỳ:](#315-bài-project_cuối-kỳ)
 
 <!-- /code_chunk_output -->
 ---

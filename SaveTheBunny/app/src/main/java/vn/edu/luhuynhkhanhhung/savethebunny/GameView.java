@@ -30,7 +30,7 @@ public class GameView extends View {
     Runnable runnable;
     Paint textPaint = new Paint();
     Paint healthPaint = new Paint();
-    private boolean reachedPoints = false;
+    boolean reachedPoints = false;
     final long UPDATE_MILLIS = 30;
     float TEXT_SIZE = 120;
     int points = 0;
@@ -82,7 +82,7 @@ public class GameView extends View {
 
     }
     // Tăng tốc độ rơi của spikes
-    private void spikeSpeed() {
+    public void spikeSpeed() {
         if (points >= 100 && !reachedPoints) {
 
             for (Spike spike : spikes) {
